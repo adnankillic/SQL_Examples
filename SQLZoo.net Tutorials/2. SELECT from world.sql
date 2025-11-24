@@ -2,7 +2,6 @@
 1. Read the notes about this table. Observe the result of running this SQL command to show the name, continent and population of all countries.
 */
 
-
 SELECT 
     name
     , continent
@@ -62,7 +61,6 @@ WHERE LOWER(name) LIKE '%united%'
 Show the countries that are big by area or big by population. Show name, population and area.
 */
 
-
 SELECT 
     name
     ,population
@@ -97,7 +95,6 @@ Millions and billions
 Divide by 1000000 (6 zeros) for millions. Divide by 1000000000 (9 zeros) for billions.
 */
 
-
 SELECT 
     name
     , ROUND(population/1000000,2) AS population_millions
@@ -112,7 +109,6 @@ this value to the nearest 1000.
 Show per-capita GDP for the trillion dollar countries to the nearest $1000.
 */
 
-
 SELECT 
     name
     , ROUND(gdp/population,-3)
@@ -124,7 +120,6 @@ WHERE gdp >1000000000000
 Each of the strings 'Greece', and 'Athens' has 6 characters.
 Show the name and capital where the name and the capital have the same number of characters.
 */
-
 
 SELECT 
     name
@@ -152,7 +147,6 @@ Find the country that has all the vowels and no spaces in its name.
 You can use the phrase name NOT LIKE '%a%' to exclude characters from your results.
 The query shown misses countries like Bahamas and Belarus because they contain at least one 'a'
 */
-
 
 SELECT 
     name 

@@ -1,5 +1,5 @@
 /*
-1. List the films where the yr is 1962 [Show id, title]
+1. List the films where the yr is 1962 and the budget is over 2000000 [Show id, title]
 */
 
 SELECT 
@@ -18,7 +18,7 @@ FROM movie
 WHERE title = 'Citizen Kane'
 -----------------------------------------------------------------------------------------------------------------------------------------
 /*
-3. List all of the Star Trek movies, include the id, title and yr (all of these movies include the words Star Trek in the title). Order results by year.
+3. List all of the Star Trek movies, include the id, title and yr (all of these movies start with the words Star Trek in the title). Order results by year.
 */
 
 SELECT
@@ -26,7 +26,7 @@ SELECT
   ,title
   ,yr
 FROM movie
-WHERE LOWER(title) LIKE '%star trek%'
+WHERE title LIKE 'Star Trek%'
 ORDER BY yr
 -----------------------------------------------------------------------------------------------------------------------------------------
 /*
@@ -191,19 +191,14 @@ ORDER BY counts DESC, title
 */
 
 SELECT 
-	a.name
-FROM (SELECT 
-		movie.*
-      FROM movie
-      JOIN casting ON casting.movieid = movie.id
-      JOIN actor ON actor.id = casting.actorid
-      WHERE actor.name = 'Art Garfunkel') AS m
-JOIN (SELECT 
-		actor.*, casting.movieid
-      FROM actor
-      JOIN casting ON casting.actorid = actor.id
-      WHERE actor.name != 'Art Garfunkel') as a
-ON m.id = a.movieid;
+  DISTINCT a2.name
+FROM actor a1
+JOIN casting c1 ON a1.id = c1.actorid
+JOIN casting c2 ON c1.movieid = c2.movieid
+JOIN actor a2 ON c2.actorid = a2.id
+WHERE a1.name = 'Art Garfunkel'
+  AND a2.name <> 'Art Garfunkel';
+
 
 
 
